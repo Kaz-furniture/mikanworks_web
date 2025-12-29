@@ -22,39 +22,27 @@
     />
 
     <style>
+      /* Cleaned / simplified CSS */
       .promo__img {
         max-width: 100%;
         height: auto;
         display: block;
         margin: 0 auto;
       }
-
-      /* スマホだけ高さを抑える */
       @media (max-width: 640px) {
         .promo__img {
           width: 100%;
-          max-height: 260px; /* ← 大きすぎ問題の核心 */
-          object-fit: cover; /* 画角を保ったままトリミング */
+          max-height: 260px;
+          object-fit: cover;
         }
       }
-      /* =========================
-         Global minimal overrides
-         ========================= */
 
-      /* Override promo background to solid black (remove promo-bg.jpg) */
       .promo {
-        background: #000 !important;
-        background-image: none !important;
+        background: #000;
+        background-image: none;
       }
 
-      /* ---- 文字が薄い問題をまとめて改善 ---- */
-      body {
-        color: #111 !important; /* 本文の基本色を濃く */
-        -webkit-text-size-adjust: 100%;
-        text-rendering: optimizeLegibility;
-      }
-
-      /* よく薄くなりがちな本文系をまとめて濃くする */
+      body,
       p,
       li,
       .promo__descr,
@@ -66,31 +54,27 @@
       #about .about-text,
       #about .about-line,
       .service-card p {
-        color: #111 !important; /* ←ここが効きます */
-        opacity: 1 !important; /* もしopacityで薄くされていても戻す */
+        color: #111;
+        opacity: 1;
         font-weight: 400;
       }
 
-      /* 見出しはさらにくっきり */
       h1,
       h2,
       h3,
       .promo__title {
-        color: #0b0b0b !important;
+        color: #0b0b0b;
         font-weight: 700;
       }
 
-      /* セクションの内側ブロックを中央寄せ（幅を維持したまま） */
       .page-header__inner,
       .services__inner,
       .pricing__inner,
       .contact__inner,
       .page-footer__inner {
-        margin-left: auto !important;
-        margin-right: auto !important;
+        margin: 0 auto;
       }
 
-      /* 見出し・ボタンなどの中央寄せ（本文は各セクションで調整） */
       .page-header__logo,
       .promo,
       .services__title,
@@ -98,25 +82,15 @@
       .pricing__title,
       .contact__title,
       .contact__descr {
-        text-align: center !important;
+        text-align: center;
       }
 
-      /* お問い合わせカードは中央に置く */
-      .contact__card {
-        margin-left: auto !important;
-        margin-right: auto !important;
-      }
-
-      /* =========================
-         Lessons cards (responsive)
-         ========================= */
-
+      /* Services (responsive cards) */
       .services__inner {
         max-width: 1024px;
         margin: 0 auto;
         padding: 30px 20px;
       }
-
       .services__list {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -125,148 +99,207 @@
         padding: 0;
         margin: 20px auto 0;
       }
-
       .service-card {
         background: #fff;
         border-radius: 12px;
         padding: 22px 18px;
         box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
         color: #111;
-
         display: flex;
         flex-direction: column;
         align-items: center;
-        text-align: left; /* 本文は左寄せの方が読みやすい */
+        text-align: left;
       }
-
       .service-icon {
         font-size: 34px;
         color: #1bbc9b;
         margin-bottom: 12px;
       }
-
       .service-card h3 {
         margin: 0 0 10px;
         font-size: 18px;
-        text-align: center; /* 見出しだけ中央 */
+        text-align: center;
         width: 100%;
       }
-
       .service-card p {
         margin: 0;
         line-height: 1.7;
       }
-
-      /* レッスン「対象」部分の文章幅を整える */
-      .services__inner > h3,
-      .services__inner > p {
-        max-width: 900px;
-        margin-left: auto;
-        margin-right: auto;
-      }
-
-      .services__inner > h3 {
-        margin-top: 22px;
-        text-align: center;
-      }
-
-      .services__inner > p {
-        text-align: center;
-        line-height: 1.8;
-      }
-
       @media (max-width: 640px) {
         .services__list {
           grid-template-columns: 1fr;
         }
       }
 
-      /* =========================
-         About section (responsive)
-         ========================= */
-
-      /* #about 内だけに効かせる（他を壊さない） */
+      /* About */
       #about .about-card {
         display: grid;
         grid-template-columns: 180px 1fr;
         gap: 20px;
         align-items: start;
         max-width: 900px;
-        margin: 16px auto 28px; /* 中央寄せ */
+        margin: 16px auto 28px;
         padding: 16px;
         border: 1px solid rgba(0, 0, 0, 0.12);
         border-radius: 12px;
       }
-
       #about .about-photo {
         width: 180px;
-        aspect-ratio: 3 / 4;
+        aspect-ratio: 3/4;
         object-fit: cover;
         border-radius: 10px;
         display: block;
       }
-
       #about .about-name {
         margin: 0 0 8px;
         font-size: 1.1rem;
         line-height: 1.4;
         text-align: left;
       }
-
       #about .about-text {
         margin: 0;
         line-height: 1.9;
         max-width: 60ch;
         text-align: left;
       }
-
-      #about .about-subtitle {
-        margin: 18px auto 6px;
-        font-size: 1rem;
-        text-align: center;
+      #about .about-subtitle,
+      #about .about-line {
         max-width: 900px;
-        color: #0b0b0b !important;
+        margin: 0 auto 10px;
+        text-align: center;
+        color: #0b0b0b;
         font-weight: 700;
       }
-
-      #about .about-line {
-        margin: 0 auto 10px;
-        line-height: 1.8;
-        text-align: center;
-        max-width: 900px;
-      }
-
       @media (max-width: 640px) {
         #about .about-card {
           grid-template-columns: 1fr;
-          justify-items: center; /* 画像も中央へ */
+          justify-items: center;
         }
-
         #about .about-photo {
           width: 100%;
           max-width: 240px;
         }
-
         #about .about-name,
         #about .about-text {
           text-align: left;
           width: 100%;
         }
-
         #about .about-text {
           max-width: 100%;
         }
       }
 
-      /* =========================
-         Footer (optional clarity)
-         ========================= */
+      /* Footer */
       .page-footer {
-        color: #111 !important;
+        color: #111;
       }
       .page-footer a {
-        color: #111 !important;
-        opacity: 1 !important;
+        color: #111;
+        opacity: 1;
+      }
+
+      /* Contact: centralizing card and form */
+      .contact__inner {
+        max-width: 1024px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      /* フッターと被らない余白を確保（増量） */
+      .contact {
+        padding-bottom: 260px; /* デスクトップ余白を十分に確保 */
+        position: relative; /* stacking context を明示 */
+        z-index: 1;
+      }
+
+      /* 内部の余白微調整（小さい画面向け） */
+      @media (max-width: 640px) {
+        .contact {
+          padding-bottom: 120px;
+        }
+      }
+
+      /* フッターのクリアと優先表示 */
+      .page-footer {
+        /* 外部で fixed 等が指定されている場合を上書きし、
+           フッターがコンテンツを覆わないようにする */
+        position: static !important;
+        bottom: auto !important;
+        clear: both;
+        z-index: auto !important;
+      }
+
+      .contact-center-wrap {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+      }
+      .contact__card {
+        width: min(900px, 100%);
+        margin: 0 auto;
+        float: none;
+        position: relative;
+      }
+      .contact__card .contact__card-item {
+        max-width: 720px;
+        margin: 0 auto 18px;
+      }
+      .contact__card .fn.org {
+        text-align: center;
+        margin-bottom: 6px;
+      }
+      .contact__card label {
+        display: block;
+        text-align: left;
+        margin-bottom: 10px;
+      }
+
+      /* ここからフォームを大きくして入力しやすくする */
+      .contact__card,
+      .contact__card form,
+      .contact__card .contact__card-item {
+        font-size: 1rem;
+      }
+
+      .contact__card label {
+        font-size: 1rem; /* ラベルを読みやすく */
+      }
+
+      .contact__card input[type="text"],
+      .contact__card input[type="email"],
+      .contact__card textarea {
+        font-size: 1rem; /* 入力文字を大きく */
+        line-height: 1.4;
+        padding: 10px 12px;
+        box-sizing: border-box;
+      }
+
+      .contact__card textarea {
+        min-height: 140px;
+      }
+
+      .contact__card button {
+        padding: 10px 14px;
+        font-size: 1rem;
+        border-radius: 6px;
+        background: #1bbc9b;
+        color: #fff;
+        border: none;
+        cursor: pointer;
+        display: inline-block;
+      }
+
+      @media (max-width: 480px) {
+        .contact__card input[type="text"],
+        .contact__card input[type="email"],
+        .contact__card textarea {
+          font-size: 0.95rem; /* スマホで少し小さめ */
+          padding: 10px;
+        }
+        .contact__card button {
+          font-size: 0.95rem;
+          padding: 9px 12px;
+        }
       }
     </style>
   </head>
@@ -402,21 +435,64 @@
           体験レッスンやご質問は下記メールでお気軽にどうぞ。
         </p>
 
-        <div class="contact__card vcard">
-          <div class="contact__card-item place">
-            <div class="fn org">レッスン場所</div>
-            <div class="adr">
-              <div class="street-address">
-                大阪府豊中市（詳しい住所はお問い合わせ後にご案内します）
-              </div>
-            </div>
-          </div>
+        <div class="contact-center-wrap">
+          <div class="contact__card vcard">
+            <form
+              class="contact__card-item"
+              action="https://formspree.io/f/mlgeadkp"
+              method="POST"
+            >
+              <label>
+                お名前
+                <input
+                  type="text"
+                  name="name"
+                  required
+                  style="width: 100%; box-sizing: border-box; margin-top: 4px"
+                />
+              </label>
 
-          <a
-            class="contact__card-item email"
-            href="mailto:kei.audrey0609@gmail.com"
-            >kei.audrey0609@gmail.com</a
-          >
+              <label>
+                メールアドレス
+                <input
+                  type="email"
+                  name="email"
+                  required
+                  style="width: 100%; box-sizing: border-box; margin-top: 4px"
+                />
+              </label>
+
+              <label>
+                メッセージ
+                <textarea
+                  name="message"
+                  rows="5"
+                  required
+                  style="width: 100%; box-sizing: border-box; margin-top: 4px"
+                ></textarea>
+              </label>
+
+              <input
+                type="hidden"
+                name="_subject"
+                value="ピアノ教室のお問い合わせ"
+              />
+
+              <button
+                type="submit"
+                style="
+                  padding: 8px 12px;
+                  border-radius: 6px;
+                  background: #1bbc9b;
+                  color: #fff;
+                  border: none;
+                  cursor: pointer;
+                "
+              >
+                送信する
+              </button>
+            </form>
+          </div>
         </div>
       </div>
     </section>
