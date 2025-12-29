@@ -5,23 +5,257 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
+
     <title>松田桂子のピアノ教室 | 豊中</title>
     <meta
       name="description"
       content="大阪府豊中市の大人向けピアノ教室。初心者〜上級者、1時間1万円〜。"
     />
     <meta name="keywords" content="ピアノ教室, 豊中, 大人のピアノ, 松田桂子" />
+
     <link rel="shortcut icon" href="favicon.ico" />
     <link rel="stylesheet" href="static/css/screen.min.css" />
     <link rel="stylesheet" href="static/css/custom.min.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+
     <style>
+      /* =========================
+         Global minimal overrides
+         ========================= */
+
       /* Override promo background to solid black (remove promo-bg.jpg) */
       .promo {
         background: #000 !important;
         background-image: none !important;
       }
+
+      /* ---- 文字が薄い問題をまとめて改善 ---- */
+      body {
+        color: #111 !important; /* 本文の基本色を濃く */
+        -webkit-text-size-adjust: 100%;
+        text-rendering: optimizeLegibility;
+      }
+
+      /* よく薄くなりがちな本文系をまとめて濃くする */
+      p,
+      li,
+      .promo__descr,
+      .services__descr,
+      .contact__descr,
+      .team__member-descr,
+      .contact__card-item,
+      .contact__card-item a,
+      #about .about-text,
+      #about .about-line,
+      .service-card p {
+        color: #111 !important; /* ←ここが効きます */
+        opacity: 1 !important; /* もしopacityで薄くされていても戻す */
+        font-weight: 400;
+      }
+
+      /* 見出しはさらにくっきり */
+      h1,
+      h2,
+      h3,
+      .promo__title {
+        color: #0b0b0b !important;
+        font-weight: 700;
+      }
+
+      /* セクションの内側ブロックを中央寄せ（幅を維持したまま） */
+      .page-header__inner,
+      .services__inner,
+      .pricing__inner,
+      .contact__inner,
+      .page-footer__inner {
+        margin-left: auto !important;
+        margin-right: auto !important;
+      }
+
+      /* 見出し・ボタンなどの中央寄せ（本文は各セクションで調整） */
+      .page-header__logo,
+      .promo,
+      .services__title,
+      .services__descr,
+      .pricing__title,
+      .contact__title,
+      .contact__descr {
+        text-align: center !important;
+      }
+
+      /* お問い合わせカードは中央に置く */
+      .contact__card {
+        margin-left: auto !important;
+        margin-right: auto !important;
+      }
+
+      /* =========================
+         Lessons cards (responsive)
+         ========================= */
+
+      .services__inner {
+        max-width: 1024px;
+        margin: 0 auto;
+        padding: 30px 20px;
+      }
+
+      .services__list {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 24px;
+        list-style: none;
+        padding: 0;
+        margin: 20px auto 0;
+      }
+
+      .service-card {
+        background: #fff;
+        border-radius: 12px;
+        padding: 22px 18px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+        color: #111;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: left; /* 本文は左寄せの方が読みやすい */
+      }
+
+      .service-icon {
+        font-size: 34px;
+        color: #1bbc9b;
+        margin-bottom: 12px;
+      }
+
+      .service-card h3 {
+        margin: 0 0 10px;
+        font-size: 18px;
+        text-align: center; /* 見出しだけ中央 */
+        width: 100%;
+      }
+
+      .service-card p {
+        margin: 0;
+        line-height: 1.7;
+      }
+
+      /* レッスン「対象」部分の文章幅を整える */
+      .services__inner > h3,
+      .services__inner > p {
+        max-width: 900px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .services__inner > h3 {
+        margin-top: 22px;
+        text-align: center;
+      }
+
+      .services__inner > p {
+        text-align: center;
+        line-height: 1.8;
+      }
+
+      @media (max-width: 640px) {
+        .services__list {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      /* =========================
+         About section (responsive)
+         ========================= */
+
+      /* #about 内だけに効かせる（他を壊さない） */
+      #about .about-card {
+        display: grid;
+        grid-template-columns: 180px 1fr;
+        gap: 20px;
+        align-items: start;
+        max-width: 900px;
+        margin: 16px auto 28px; /* 中央寄せ */
+        padding: 16px;
+        border: 1px solid rgba(0, 0, 0, 0.12);
+        border-radius: 12px;
+      }
+
+      #about .about-photo {
+        width: 180px;
+        aspect-ratio: 3 / 4;
+        object-fit: cover;
+        border-radius: 10px;
+        display: block;
+      }
+
+      #about .about-name {
+        margin: 0 0 8px;
+        font-size: 1.1rem;
+        line-height: 1.4;
+        text-align: left;
+      }
+
+      #about .about-text {
+        margin: 0;
+        line-height: 1.9;
+        max-width: 60ch;
+        text-align: left;
+      }
+
+      #about .about-subtitle {
+        margin: 18px auto 6px;
+        font-size: 1rem;
+        text-align: center;
+        max-width: 900px;
+        color: #0b0b0b !important;
+        font-weight: 700;
+      }
+
+      #about .about-line {
+        margin: 0 auto 10px;
+        line-height: 1.8;
+        text-align: center;
+        max-width: 900px;
+      }
+
+      @media (max-width: 640px) {
+        #about .about-card {
+          grid-template-columns: 1fr;
+          justify-items: center; /* 画像も中央へ */
+        }
+
+        #about .about-photo {
+          width: 100%;
+          max-width: 240px;
+        }
+
+        #about .about-name,
+        #about .about-text {
+          text-align: left;
+          width: 100%;
+        }
+
+        #about .about-text {
+          max-width: 100%;
+        }
+      }
+
+      /* =========================
+         Footer (optional clarity)
+         ========================= */
+      .page-footer {
+        color: #111 !important;
+      }
+      .page-footer a {
+        color: #111 !important;
+        opacity: 1 !important;
+      }
     </style>
   </head>
+
   <body>
     <header class="page-header js-header">
       <div class="page-header__inner">
@@ -29,6 +263,7 @@
           <h1>松田桂子のピアノ教室</h1>
           <span>大阪府豊中市 — 大人のためのピアノレッスン</span>
         </div>
+
         <nav class="page-header__nav js-nav">
           <ul>
             <li>
@@ -78,30 +313,39 @@
         <p class="services__descr">
           個人レッスンを中心に、目標に合わせたカリキュラムを作成します。
         </p>
+
         <ul class="services__list">
-          <li>
+          <li class="service-card">
+            <i class="fa fa-book service-icon" aria-hidden="true"></i>
             <h3>初心者クラス</h3>
             <p>
               楽譜の読み方、基礎的な指のトレーニング、簡単な曲の演奏まで丁寧に指導します。
             </p>
           </li>
-          <li>
+
+          <li class="service-card">
+            <i class="fa fa-music service-icon" aria-hidden="true"></i>
             <h3>中級クラス</h3>
             <p>
               テクニック向上、和声の理解、表現力を磨きます。クラシックからポピュラーまで対応。
             </p>
           </li>
-          <li>
+
+          <li class="service-card">
+            <i class="fa fa-star service-icon" aria-hidden="true"></i>
             <h3>上級クラス</h3>
             <p>高難度の曲やコンサート準備、演奏会向けの指導を行います。</p>
           </li>
-          <li>
+
+          <li class="service-card">
+            <i class="fa fa-cog service-icon" aria-hidden="true"></i>
             <h3>自由課題・伴奏対応</h3>
             <p>
               伴奏練習や趣味の曲のアレンジ、伴奏希望の方への実践的な指導も可能です。
             </p>
           </li>
         </ul>
+
         <h3>対象</h3>
         <p>成人向け（社会人・主婦・シニア等）。年齢問わず歓迎します。</p>
       </div>
@@ -109,22 +353,30 @@
 
     <section class="pricing" id="about">
       <div class="pricing__inner">
-        <h2 class="pricing__title">講師紹介・料金</h2>
-        <div class="team__member">
-          <img src="screenshots/keiko-photo.jpg" alt="松田桂子" />
-          <div class="team__member-info">
-            <h3 class="team__member-name">松田 桂子（まつだ けいこ）</h3>
-            <span class="team__member-role">ピアノ講師</span>
-            <p class="team__member-descr">
+        <h2 class="pricing__title">講師紹介</h2>
+
+        <div class="about-card">
+          <img
+            class="about-photo"
+            src="screenshots/keiko-photo.jpg"
+            alt="松田桂子"
+          />
+          <div class="about-body">
+            <h3 class="about-name">松田 桂子（まつだ けいこ）</h3>
+            <p class="about-text">
               武蔵野音楽大学音楽学部ピアノ専攻を卒業。全日本演奏家協会主催【推薦コンサート】、森の博記念堂開館20周年記念コンサート、コンサート【ムジカ・エ・ヴィータ】、あべの区民UNION
               CONCERT等に出演。現在も演奏活動を行っている。
             </p>
           </div>
         </div>
-        <h3>料金</h3>
-        <p>個人レッスン：1時間 10,000円から（レベル・頻度により応相談）。</p>
-        <h3>所在地</h3>
-        <p>大阪府豊中市（詳細はお問い合わせください）</p>
+
+        <h3 class="about-subtitle">料金</h3>
+        <p class="about-line">
+          個人レッスン：1時間 10,000円から（レベル・頻度により応相談）。
+        </p>
+
+        <h3 class="about-subtitle">所在地</h3>
+        <p class="about-line">大阪府豊中市（詳細はお問い合わせください）</p>
       </div>
     </section>
 
@@ -132,32 +384,19 @@
       <div class="contact__inner">
         <h2 class="contact__title">お問い合わせ</h2>
         <p class="contact__descr">
-          体験レッスンやご質問は下記フォームまたはメールでお気軽にどうぞ。
+          体験レッスンやご質問は下記メールでお気軽にどうぞ。
         </p>
-        <div class="contact__notice">
-          <h3>お問い合わせ</h3>
-          <p>
-            現在、フォームは停止しています。お問い合わせは下記メールアドレスへお願いします。
-          </p>
-          <p>
-            <a
-              class="contact__card-item email"
-              href="mailto:kei.audrey0609@gmail.com"
-              >kei.audrey0609@gmail.com</a
-            >
-          </p>
-        </div>
+
         <div class="contact__card vcard">
-          <h3 class="contact__card-title">教室情報</h3>
           <div class="contact__card-item place">
-            <div class="fn org">松田桂子のピアノ教室</div>
+            <div class="fn org">レッスン場所</div>
             <div class="adr">
               <div class="street-address">
                 大阪府豊中市（詳しい住所はお問い合わせ後にご案内します）
               </div>
             </div>
           </div>
-          <div class="contact__card-item tel">電話: —</div>
+
           <a
             class="contact__card-item email"
             href="mailto:kei.audrey0609@gmail.com"
