@@ -22,6 +22,21 @@
     />
 
     <style>
+      .promo__img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+        margin: 0 auto;
+      }
+
+      /* スマホだけ高さを抑える */
+      @media (max-width: 640px) {
+        .promo__img {
+          width: 100%;
+          max-height: 260px; /* ← 大きすぎ問題の核心 */
+          object-fit: cover; /* 画角を保ったままトリミング */
+        }
+      }
       /* =========================
          Global minimal overrides
          ========================= */
